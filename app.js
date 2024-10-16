@@ -22,3 +22,9 @@ function getComputerChoice() {
     return computerChoice;
 }
 
+function getHumanChoice() {
+    let humanChoice = prompt("Select your weapon");
+    
+    return humanChoice;
+}
+
