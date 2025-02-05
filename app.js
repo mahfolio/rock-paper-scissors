@@ -1,31 +1,23 @@
 
 function getComputerChoice() {
     let computerChoice;
-    let randomNumber = Math.floor(Math.random() * 3) + 1;
-
-    switch (randomNumber) {
-        case 1:
-            computerChoice = "rock";
-            break;
-
-        case 2:
-            computerChoice = "paper";
-            break;
-
-        case 3:
-            computerChoice = "scissors";
-            break;
-
-        default:
-            break;
-    }
+    choices = ["rock", "paper", "scissors"];
+    // Number 3 for generating a random number between 1 and 3
+    // Number 1 for starting the random number from 1 instead of 0
+    // let randomNumber = Math.floor(Math.random() * 3) + 1;
+    computerChoice = choices[Math.floor(Math.random() * 3)];
     // console.log(computerChoice);
     return computerChoice;
 }
-
+// Change the following function to getHumanChoice interactively using buttons
 function getHumanChoice() {
-    let humanChoice = prompt("Select your weapon");
-    // console.log(humanChoice);
+    let humanChoice = "";
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            humanChoice = button.id;
+        });
+    });
     return humanChoice;
 }
 
@@ -42,35 +34,34 @@ function playGame() {
         if (humanChoice === "paper") {
             if (computerChoice === "rock") {
                 message = "You win! Paper beats Rock.";
-                humanScore += 10;
+                humanScore += 1;
             } else if (computerChoice === "scissors") {
                 message = "You lose! Scissors beat Paper.";
-                computerScore += 10;
+                computerScore += 1;
             } else {
                 message = "Draw! Nobody wins. Try again.";
             }
         } else if (humanChoice === "rock") {
             if (computerChoice === "paper") {
                 message = "You lose! Paper beats Rock";
-                computerScore += 10;
+                computerScore += 1;
             } else if (computerChoice === "scissors") {
                 message = "You win! Rock beats Scissors";
-                humanScore += 10;
+                humanScore += 1;
             } else {
                 message = "Draw! Nobody wins. Try again.";
             }
         } else if (humanChoice === "scissors") {
             if (computerChoice === "paper") {
                 message = "You win! Scissors beat Paper.";
-                humanScore += 10;
+                humanScore += 1;
             } else if (computerChoice === "rock") {
                 message = "You lose! Rock beats Scissors.";
-                computerScore += 10;
+                computerScore += 1;
             } else {
                 message = "Draw! Nobody winds. Try again.";
             }
         }
-    
         // console.log(message);
         return message;
     }
@@ -81,29 +72,7 @@ function playGame() {
     console.log(`Human Score: ${humanScore}`);
     console.log(`Computer Score: ${computerScore}`);
 
-    playerChoice = getHumanChoice();
-    machineChoice = getComputerChoice();
-    console.log(playRound(playerChoice, machineChoice));
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`);
-
-    playerChoice = getHumanChoice();
-    machineChoice = getComputerChoice();
-    console.log(playRound(playerChoice, machineChoice));
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`);
-
-    playerChoice = getHumanChoice();
-    machineChoice = getComputerChoice();
-    console.log(playRound(playerChoice, machineChoice));
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`);
-
-    playerChoice = getHumanChoice();
-    machineChoice = getComputerChoice();
-    console.log(playRound(playerChoice, machineChoice));
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`);
+    
 
     if (humanScore > computerScore) {
         finalResult = "You won. Congratulations!";
