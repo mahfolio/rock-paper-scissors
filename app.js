@@ -1,6 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
 let finalResult;
+let finalScoreUser;
+let finalScoreComputer;
 
 function playRound(manChoice, machineChoice) {
     // console.log(humanChoice);
@@ -59,31 +61,55 @@ buttons.forEach((button) => {
         let roundResult = playRound(humanChoice, computerChoice);
         
         if (humanScore === 5) {
-            console.log(humanScore);
-            console.log(computerScore);
+            finalScoreUser = humanScore;
+            finalScoreComputer = computerScore;
             finalResult = "You won. Congratulations!";
-            humanScore = 0;
-            computerScore = 0;
         } else if (computerScore === 5) {
-            console.log(humanScore);
-            console.log(computerScore);
+            finalScoreUser = humanScore;
+            finalScoreComputer = computerScore;
             finalResult = "You lost. Better luck next time.";
-            humanScore = 0;
-            computerScore = 0;
         } else if (humanScore === 5 && computerScore === 5) {
-            console.log(humanScore);
-            console.log(computerScore);
+            finalScoreUser = humanScore;
+            finalScoreComputer = computerScore;
             finalResult = "It is a draw. Play again."
-            humanScore = 0;
-            computerScore = 0;
         }
 
-        console.log(roundResult);
-        console.log(humanScore);
-        console.log(computerScore);
-        console.log(finalResult);
+        const userChoice = document.querySelector('.user-choice');
+        userChoice.textContent = humanChoice;
+        const compChoice = document.querySelector('.computer-choice');
+        compChoice.textContent = computerChoice;
+        const scoreUser = document.querySelector('.score__user');
+        scoreUser.textContent = humanScore;
+        const scoreComputer = document.querySelector('.score__computer');
+        scoreComputer.textContent = computerScore;
+        const finalUserScore = document.querySelector('.score-final__user');
+        finalUserScore.textContent = finalScoreUser;
+        const finalComputerScore = document.querySelector('.score-final__computer');
+        finalComputerScore.textContent = finalScoreComputer;
+        const resultRound = document.querySelector('.round-result');
+        resultRound.textContent = roundResult;
+        const resultFinal = document.querySelector('.final-result');
+        resultFinal.textContent = finalResult;
+
+        const reset = document.querySelector('.reset');
+        reset.addEventListener('click', () => {
+            humanScore = 0;
+            computerScore = 0;
+            finalResult = "";
+            finalScoreUser = "";
+            finalScoreComputer = "";
+            humanChoice = "";
+            computerChoice = "";
+            roundResult = "";
+            userChoice.textContent = "";
+            compChoice.textContent = "";
+            scoreUser.textContent = "";
+            scoreComputer.textContent = "";
+            finalUserScore.textContent = "";
+            finalComputerScore.textContent = "";
+            resultRound.textContent = "";
+            resultFinal.textContent = "";
+        });
+
     });
 });
-
-
-
